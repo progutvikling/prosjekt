@@ -8,5 +8,9 @@ public class Test {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public string helloWorld() {
+		return "Hey";
+	}
 
 }
