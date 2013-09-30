@@ -5,12 +5,8 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-	
-	public string helloWorld() {
-		return "Hey";
+		// TODO Auto-generated method stub¾all¿kdj
+		
 	}
 
 }
