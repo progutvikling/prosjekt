@@ -11,6 +11,7 @@ CREATE TABLE `images` (
   `url` varchar(64) DEFAULT NULL,
   `blocked` tinyint(1) DEFAULT NULL,
   `external_id` varchar(64) DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 
