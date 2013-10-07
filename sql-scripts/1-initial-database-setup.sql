@@ -13,3 +13,16 @@ CREATE TABLE `images` (
   `external_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+CREATE TABLE `configs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+CREATE TABLE `keywords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `keyword` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
