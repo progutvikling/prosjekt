@@ -1,12 +1,8 @@
 package test;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
-
-import org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
-
 import dal.DatabaseManager;
 import dal.Image;
 
@@ -20,10 +16,13 @@ public class DatabaseManagerTests {
 		assertTrue(succeeded);
 	}
 	
+	//probably a bad idea to have two asserts in the same test,
+	//but it will work for now
 	@Test
 	public void getLastHundredImagesTest() {
 		DatabaseManager dm = new DatabaseManager();
-		ArrayList<Image> img = dm.getLast(100);
-		assertNotNull(img);
+		ArrayList<Image> images = dm.getLast(100);
+		assertNotNull(images);
+		assertTrue(images.size() <= 100);
 	}
 }
