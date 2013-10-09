@@ -20,7 +20,7 @@ public class ImageParserTest {
 		String json = ImageParser.getJsonFromImage(img);
 		System.out.println(date);
 		System.out.println(json);
-		//have to be 1970-01-01 01:00:00 because the program will detect the that zone
+		//have to be 1970-01-01 01:00:00 because the program will detect the time zone
 		//that our jvm is set to (which is GMT+1)
 		assertEquals(json, "{\"url\":\"url\",\"id\":1,\"description\":\"description\",\"createdTime\":\"1970-01-01 01:00:00\"}");
 	}
