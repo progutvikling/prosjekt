@@ -6,6 +6,8 @@ delimiter $$
 
 CREATE DATABASE `PictureBrowser` /*!40100 DEFAULT CHARACTER SET latin1 */$$
 
+USE `PictureBrowser`;$$
+
 CREATE TABLE `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(64) DEFAULT NULL,
