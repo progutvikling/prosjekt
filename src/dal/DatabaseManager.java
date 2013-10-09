@@ -1,6 +1,7 @@
 package dal;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ public class DatabaseManager {
 		String url = img.getUrl();
 		int id = img.getID();
 		String description = img.getDescription();
+		Date createdTime = img.getCreatedTime();
 
 		try (Connection connection = DriverManager.getConnection(Database.DB_URL, Database.DB_USERNAME, Database.DB_PASSWORD)) {
 
@@ -23,6 +25,7 @@ public class DatabaseManager {
 			statement.setString(1, url);
 			statement.setInt(2, id);
 			statement.setString(3, description);
+			statement.setDate(4, createdTime);
 			statement.executeUpdate();
 	
 			return true;
@@ -43,6 +46,7 @@ public class DatabaseManager {
 		String url;
 		int id;
 		String description;
+		Date createdTime;
 
 		try (Connection connection = DriverManager.getConnection(Database.DB_URL, Database.DB_USERNAME, Database.DB_PASSWORD)) {
 			statement = connection.prepareStatement(Database.QUERY_GET_LAST_N_IMAGES);
@@ -52,7 +56,8 @@ public class DatabaseManager {
 				url = result.getString("url");
 				id = result.getInt("external_id");
 				description = result.getString("description");
-				images.add(new Image(url, id, description));				
+				createdTime = result.getDate("created_time");
+				images.add(new Image(url, id, description, createdTime));				
 			} 
 		}catch (SQLException e) {
 			e.printStackTrace();

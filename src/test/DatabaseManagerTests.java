@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import org.junit.Test;
 import dal.DatabaseManager;
@@ -11,7 +13,8 @@ public class DatabaseManagerTests {
 	@Test
 	public void insertTest() {
 		DatabaseManager dm = new DatabaseManager();
-		Image img = new Image("insertUrl", 1234, "insertTest");
+		java.util.Date currentTime = new java.util.Date();
+		Image img = new Image("insertUrl", 1234, "insertTest", new Date(currentTime.getTime()));
 		boolean succeeded = dm.insert(img);
 		assertTrue(succeeded);
 	}
