@@ -1,14 +1,10 @@
 package test;
 
 import static org.junit.Assert.*;
-
 import java.sql.Date;
 import java.util.ArrayList;
-
 import org.junit.Test;
-
 import bll.admin.ImageParser;
-
 import dal.admin.Image;
 
 public class ImageParserTest {

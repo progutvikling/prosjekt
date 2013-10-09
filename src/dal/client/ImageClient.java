@@ -6,6 +6,14 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * 
+ * This class is responsible for fetching images and
+ * configuration values from the server.
+ * @author Stian Sandve
+ *
+ */
+
 public class ImageClient {
 	
 	public static String fetchImagesFromServer() {

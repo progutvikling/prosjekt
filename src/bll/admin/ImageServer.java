@@ -7,13 +7,21 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-
 import dal.admin.DatabaseManager;
 import dal.admin.Image;
+
+/**
+ * 
+ * This class is responsible for serving the clients 
+ * with a JSON representation of the latest images stored in the DB.
+ * It is also responsible for providing configuration
+ * values like the slideshow delay.
+ * @author Stian Sandves
+ *
+ */
 
 public class ImageServer {
 

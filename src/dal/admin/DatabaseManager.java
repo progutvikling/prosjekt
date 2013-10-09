@@ -8,6 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * 
+ * This class is responsible for inserting and retrieving
+ * images from our database
+ * @author Stian Sandve
+ *
+ */
+
 public class DatabaseManager {
 	
 	public static final String QUERY_INSERT_IMAGE = "INSERT INTO images" +

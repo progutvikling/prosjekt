@@ -2,6 +2,14 @@ package dal.admin;
 
 import java.sql.Date;
 
+/**
+ * 
+ * A POJO with the information we need for the 
+ * images fetched from twitter an instagram.
+ * @author Stian Sandve
+ *
+ */
+
 public class Image {
 	
 	private String url;
@@ -31,5 +39,4 @@ public class Image {
 	public Date getCreatedTime() {
 		return this.createdTime;
 	}
-
 }

@@ -1,11 +1,17 @@
 package bll.admin;
 
 import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import dal.admin.Image;
+
+/**
+ * 
+ * A utility to get a JSON representation of 
+ * dal.admin.Image objects
+ * @author Stian Sandve
+ *
+ */
 
 public class ImageParser {
 	
