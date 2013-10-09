@@ -17,13 +17,14 @@ public class ImageServerTest {
 	//I will do some refactoring later.
 
 	@Test
-	public void connectToServerAndFetchImagesTest() throws IOException {
+	public void connectToServerFetchImagesAndCheckThatResponseIsNotEmptyTest() throws IOException {
 		ImageServer server = new ImageServer();
 		server.start();
 		URL url = new URL("http://localhost:8000/images");
 		URLConnection conn = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		assertEquals("images", in.readLine());
+		String response = in.readLine();
+		assertNotEquals("", response);
 		server.stop(0);
 	}
 	
