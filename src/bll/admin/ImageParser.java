@@ -1,5 +1,7 @@
 package bll.admin;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,6 +13,13 @@ public class ImageParser {
 		Gson gson = new GsonBuilder()
 		   .setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 		String json = gson.toJson(image);
+		return json;
+	}
+	
+	public static String getJsonFromImage(ArrayList<Image> images) {
+		Gson gson = new GsonBuilder()
+		   .setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+		String json = gson.toJson(images);
 		return json;
 	}
 }
