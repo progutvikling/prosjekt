@@ -9,16 +9,18 @@ import dal.admin.Image;
 
 public class ImageParser {
 	
+	private static final String DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
+	
 	public static String getJsonFromImage(Image image) {
 		Gson gson = new GsonBuilder()
-		   .setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+		   .setDateFormat(DATE_FORMAT).create();
 		String json = gson.toJson(image);
 		return json;
 	}
 	
 	public static String getJsonFromImage(ArrayList<Image> images) {
 		Gson gson = new GsonBuilder()
-		   .setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+		   .setDateFormat(DATE_FORMAT).create();
 		String json = gson.toJson(images);
 		return json;
 	}
