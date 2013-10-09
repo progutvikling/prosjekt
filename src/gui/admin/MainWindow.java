@@ -14,6 +14,7 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow(List<JPanel> adminPanels) {
 		this.setSize(600, 600);
+		this.setTitle("Administrasjon for bildeviser");
 		this.setLayout(new BorderLayout());
 		
 		JTabbedPane tabbedPane = new JTabbedPane();

@@ -7,7 +7,6 @@ import gui.admin.ManageKeywordsPanel;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
 /**
  * This class sets up the main window with all its tabs.
