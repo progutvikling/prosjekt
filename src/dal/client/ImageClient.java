@@ -22,5 +22,4 @@ public class ImageClient {
 		}
 		return response;
 	}
-	
 }
