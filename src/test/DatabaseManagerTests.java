@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import org.junit.Test;
-import dal.DatabaseManager;
-import dal.Image;
+
+import dal.admin.DatabaseManager;
+import dal.admin.Image;
 
 public class DatabaseManagerTests {
 	

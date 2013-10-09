@@ -1,4 +1,4 @@
-package dal;
+package dal.admin;
 
 import java.sql.Date;
 

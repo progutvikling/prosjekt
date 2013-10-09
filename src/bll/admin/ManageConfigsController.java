@@ -1,4 +1,4 @@
-package bll;
+package bll.admin;
 
 public class ManageConfigsController {
 	

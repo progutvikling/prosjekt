@@ -1,4 +1,4 @@
-package bll;
+package bll.admin;
 
 import gui.admin.MainWindow;
 import gui.admin.ManageConfigsPanel;
