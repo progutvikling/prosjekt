@@ -9,6 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DatabaseManager {
+	
+	public static final String QUERY_INSERT_IMAGE = "INSERT INTO images" +
+			" (url, external_id, description, created_time)" +
+			" VALUES (?, ?, ?, ?);";
+	
+	public static final String QUERY_GET_LAST_N_IMAGES = "SELECT url, external_id, description, created_time"+
+			" FROM images ORDER BY id DESC LIMIT ?;";
 
 	public boolean insert(Image img) {
 		
@@ -21,7 +28,7 @@ public class DatabaseManager {
 
 		try (Connection connection = DriverManager.getConnection(Database.DB_URL, Database.DB_USERNAME, Database.DB_PASSWORD)) {
 
-			statement = connection.prepareStatement(Database.QUERY_INSERT_IMAGE);
+			statement = connection.prepareStatement(QUERY_INSERT_IMAGE);
 			statement.setString(1, url);
 			statement.setInt(2, id);
 			statement.setString(3, description);
@@ -39,6 +46,9 @@ public class DatabaseManager {
 	
 	public ArrayList<Image> getLast(int numberOfRows) {
 		
+		if(numberOfRows < 0)
+			throw new IllegalArgumentException();
+		
 		PreparedStatement statement;
 		ResultSet result;
 
@@ -49,7 +59,7 @@ public class DatabaseManager {
 		Date createdTime;
 
 		try (Connection connection = DriverManager.getConnection(Database.DB_URL, Database.DB_USERNAME, Database.DB_PASSWORD)) {
-			statement = connection.prepareStatement(Database.QUERY_GET_LAST_N_IMAGES);
+			statement = connection.prepareStatement(QUERY_GET_LAST_N_IMAGES);
 			statement.setInt(1, numberOfRows);
 			result = statement.executeQuery();
 			while (result.next()) {
