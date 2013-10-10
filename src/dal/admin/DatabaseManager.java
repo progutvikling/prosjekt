@@ -25,7 +25,7 @@ public class DatabaseManager {
 	public static final String QUERY_GET_LAST_N_IMAGES = "SELECT url, external_id, description, created_time"+
 			" FROM images ORDER BY id DESC LIMIT ?;";
 
-	public boolean insert(Image img) {
+	public synchronized boolean insert(Image img) {
 		
 		PreparedStatement statement;
 
@@ -52,7 +52,7 @@ public class DatabaseManager {
 	}
 	
 	
-	public ArrayList<Image> getLast(int numberOfRows) {
+	public synchronized ArrayList<Image> getLast(int numberOfRows) {
 		
 		if(numberOfRows < 0)
 			throw new IllegalArgumentException();

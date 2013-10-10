@@ -7,6 +7,13 @@ import org.junit.Test;
 import bll.admin.ImageParser;
 import dal.admin.Image;
 
+/**
+ * 
+ * Unit tests for bll.admin.ImageParser
+ * @author Stian Sandve
+ *
+ */
+
 public class ImageParserTest {
 	
 	@Test
