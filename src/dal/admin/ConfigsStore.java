@@ -19,9 +19,10 @@ public class ConfigsStore implements IConfigsStore {
 	@Override
 	public String getConfig(String name) {
 		String value = "";
-		try (PreparedStatement statement = conn.prepareStatement("SELECT value from configs WHERE name = ?")) {
+		try (PreparedStatement statement = conn.prepareStatement("SELECT value from configs WHERE name = ?;")) {
 			statement.setString(1, name);
 			try (ResultSet r = statement.executeQuery()) {
+				r.next();
 				value = r.getString("value");
 			}
 		} catch (SQLException e) {
@@ -32,8 +33,11 @@ public class ConfigsStore implements IConfigsStore {
 
 	@Override
 	public boolean addConfig(String name, String value) {
-		try (PreparedStatement statement = conn.prepareStatement("INSERT INTO configs (name, value) VALUES (?, ?)")) {
+		try (PreparedStatement statement = conn.prepareStatement("INSERT INTO configs (name, value)" +
+				" VALUES (?, ?) ON DUPLICATE KEY UPDATE value = ?;")) {
 			statement.setString(1, name);
+			statement.setString(2, value);
+			statement.setString(3, value);
 			return statement.executeUpdate() > 0 ? true : false;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,10 +49,8 @@ public class ConfigsStore implements IConfigsStore {
 	public boolean deleteConfig(String name) {
 		try (PreparedStatement statement = conn.prepareStatement("DELETE FROM configs WHERE name = ?")) {
 			statement.setString(1, name);
-			statement.executeUpdate();
 			return statement.executeUpdate() > 0 ? true : false;
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return false;
 		}
 	}	

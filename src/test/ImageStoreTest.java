@@ -31,12 +31,9 @@ public class ImageStoreTest {
 		assertTrue("A valid insert should return true", store.insert(img));
 	}
 	
-	//probably a bad idea to have two asserts in the same test,
-	//but it will work for now
 	@Test
 	public void getLastHundredImagesTest() {
 		ArrayList<Image> images = store.getLast(10);
-		assertNotNull("Should not return null", images);
 		assertTrue("Should return maximum 10 images", images.size() <= 10);
 	}
 }
