@@ -14,8 +14,10 @@ import javax.swing.JPanel;
  */
 public class AdminMainController {
 	public static void main(String[] args) {
+		ManageKeywordsController manageKeywords = new ManageKeywordsController();
+		
 		ArrayList<JPanel> panels = new ArrayList<JPanel>();
-		panels.add(new ManageKeywordsPanel());
+		panels.add(manageKeywords.getView());
 		panels.add(new ManageConfigsPanel());
 		
 		MainWindow wnd = new MainWindow(panels);

@@ -34,7 +34,6 @@ public class KeywordsStore {
 			statement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
@@ -45,7 +44,6 @@ public class KeywordsStore {
 			statement.setString(1, keyword);
 			return statement.executeUpdate() > 0 ? true : false;
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return false;
 		}
 	}	
