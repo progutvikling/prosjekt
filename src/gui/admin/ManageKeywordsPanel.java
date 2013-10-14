@@ -31,6 +31,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+
 public class ManageKeywordsPanel extends JPanel implements TableModel {
 	private static final long serialVersionUID = 9035836985008417742L;
 
@@ -41,7 +42,11 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 	ArrayList<String> keywords = new ArrayList<String>();
 
 	ManageKeywordsPanelHandler handler;
-	
+
+
+	/**
+	 * Sets up the panel and adds action listener to the button
+	 */
 	public ManageKeywordsPanel(ManageKeywordsPanelHandler handler) {
 		this.handler = handler;
 
@@ -50,11 +55,14 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 
 		add(createTable());
 		
+		AddKeywordActionListener actionListener = new AddKeywordActionListener(this);
+
 		keywordTextField = new JTextField();
+		keywordTextField.addActionListener(actionListener);
 		keywordTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, keywordTextField.getPreferredSize().height));
 
 		addButton = new JButton("Legg til");
-		addButton.addActionListener(new AddButtonActionListener(this));
+		addButton.addActionListener(actionListener);
 
 		JPanel hPanel = new JPanel();
 		hPanel.setLayout(new BoxLayout(hPanel, BoxLayout.X_AXIS));
@@ -63,6 +71,10 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 		this.add(hPanel);
 	}
 
+
+	/**
+	 * Creates the table component and sets the table model to this.
+	 */
 	private JComponent createTable() {
 		table = new JTable(this);
 
@@ -80,10 +92,14 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 		return new JScrollPane(table);
 	}
 
-	private class AddButtonActionListener implements ActionListener {
+
+	/**
+	 * Action listener for the "Add keyword" button
+	 */
+	private class AddKeywordActionListener implements ActionListener {
 		private ManageKeywordsPanel view;
 
-		public AddButtonActionListener(ManageKeywordsPanel view) {
+		public AddKeywordActionListener(ManageKeywordsPanel view) {
 			this.view = view;
 		}
 
@@ -99,6 +115,13 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 			}
 		}
 	}
+
+
+	/* ***************************************************************************
+	 * Below here is mostly implementations of TableModel. The
+	 * function names should be self explanatory. Or see
+	 * http://docs.oracle.com/javase/7/docs/api/javax/swing/table/TableModel.html
+	 */
 
 	public String[] columns = {"Søkeord", "Delete"};
 
