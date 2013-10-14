@@ -45,6 +45,8 @@ public class ImageStore implements IImageStore {
 			throw new IllegalArgumentException();
 		}
 
+		ArrayList<Image> images = new ArrayList<Image>();
+		
 		try {
 			PreparedStatement statement = conn.prepareStatement(
 				"SELECT url, external_id, description, created_time "+
@@ -52,7 +54,6 @@ public class ImageStore implements IImageStore {
 			statement.setInt(1, numberOfRows);
 
 			ResultSet result = statement.executeQuery();
-			ArrayList<Image> images = new ArrayList<Image>();
 			while (result.next()) {
 				images.add(new Image(
 					result.getString("url"),
@@ -61,10 +62,9 @@ public class ImageStore implements IImageStore {
 					result.getDate("created_time")
 				));
 			}
-			return images;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return images;
 	}
 }

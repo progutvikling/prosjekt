@@ -40,4 +40,8 @@ public class StoreFactory {
 	public static IKeywordsStore getKeywordsStore() {
 		return new KeywordsStore(StoreFactory.getConnection());
 	}
+	
+	public static IConfigsStore getConfigsStore() {
+		return new ConfigsStore(StoreFactory.getConnection());
+	}
 }
