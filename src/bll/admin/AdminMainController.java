@@ -2,10 +2,7 @@ package bll.admin;
 
 import gui.admin.MainWindow;
 import gui.admin.ManageConfigsPanel;
-import gui.admin.ManageKeywordsPanel;
-
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 /**

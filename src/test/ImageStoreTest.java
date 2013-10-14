@@ -1,14 +1,9 @@
 package test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import java.sql.Date;
 import java.util.ArrayList;
-
 import org.junit.Test;
-
 import dal.admin.IImageStore;
 import dal.admin.Image;
 import dal.admin.StoreFactory;

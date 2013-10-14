@@ -82,7 +82,7 @@ public class ManageKeywordsPanel extends JPanel implements TableModel {
 			private static final long serialVersionUID = 1L;
 
 			public void actionPerformed(ActionEvent e) {
-				JTable table = (JTable)e.getSource();
+				//JTable table = (JTable)e.getSource();
 				int row = Integer.valueOf(e.getActionCommand());
 				String keyword = getValueAt(row, 0).toString();
 				handler.deleteKeyword(keyword);
