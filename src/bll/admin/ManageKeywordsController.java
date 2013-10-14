@@ -5,19 +5,19 @@ import gui.admin.ManageKeywordsPanelHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.admin.KeywordsStore;
+import dal.admin.IKeywordsStore;
+import dal.admin.StoreFactory;
 
 
 public class ManageKeywordsController implements ManageKeywordsPanelHandler {
     public ManageKeywordsPanel view;
-	public KeywordsStore store;
+	public IKeywordsStore store = StoreFactory.getKeywordsStore();
 	
 	private ArrayList<String> keywords;
 
 
     public ManageKeywordsController() {
-		store = new KeywordsStore();
-		keywords = store.getKeywords();
+    	keywords = store.getKeywords();
 		view = new ManageKeywordsPanel(this);
     }
 

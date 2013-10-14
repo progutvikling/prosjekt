@@ -1,15 +1,17 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import dal.admin.DatabaseManager;
+import dal.admin.IImageStore;
 import dal.admin.Image;
+import dal.admin.StoreFactory;
 
 /**
  * 
@@ -18,30 +20,23 @@ import dal.admin.Image;
  *
  */
 
-public class DatabaseManagerTests {
+public class ImageStoreTest {
 	
-	DatabaseManager dm;
-	
-	@Before
-	public void initDatabaseConnection() {
-		dm = new DatabaseManager();
-	}
+	IImageStore store = StoreFactory.getImageStore();
 	
 	@Test
 	public void insertTest() {
 		java.util.Date currentTime = new java.util.Date();
 		Image img = new Image("insertUrl", 1234, "insertTest", new Date(currentTime.getTime()));
-		boolean succeeded = dm.insert(img);
-		assertTrue(succeeded);
+		assertTrue("A valid insert should return true", store.insert(img));
 	}
 	
 	//probably a bad idea to have two asserts in the same test,
 	//but it will work for now
 	@Test
 	public void getLastHundredImagesTest() {
-		DatabaseManager dm = new DatabaseManager();
-		ArrayList<Image> images = dm.getLast(100);
-		assertNotNull(images);
-		assertTrue(images.size() <= 100);
+		ArrayList<Image> images = store.getLast(10);
+		assertNotNull("Should not return null", images);
+		assertTrue("Should return maximum 10 images", images.size() <= 10);
 	}
 }

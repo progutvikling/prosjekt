@@ -7,24 +7,19 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import dal.admin.KeywordsStore;
+import dal.admin.IKeywordsStore;
+import dal.admin.StoreFactory;
 
 
 public class KeywordsStoreTest {
-	KeywordsStore store;
+	IKeywordsStore store = StoreFactory.getKeywordsStore();
 
 	public String generateRandomKeyword() {
 		return String.valueOf(UUID.randomUUID());
 	}
-	
-	@Before
-	public void initDatabaseConnection() {
-		store = new KeywordsStore();
-	}
-	
+		
 	@Test
 	public void addKeywordTest() {
 		String randomKeyword = generateRandomKeyword();

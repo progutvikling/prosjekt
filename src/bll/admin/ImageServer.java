@@ -7,11 +7,14 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import dal.admin.DatabaseManager;
+
+import dal.admin.IImageStore;
 import dal.admin.Image;
+import dal.admin.StoreFactory;
 
 /**
  * 
@@ -67,8 +70,8 @@ public class ImageServer {
 		}
 
 		public String getJsonRepresentationOfLastImages(int numberOfImages) {
-			DatabaseManager dbm = new DatabaseManager();
-			ArrayList<Image> lastImages = dbm.getLast(numberOfImages);
+			IImageStore store = StoreFactory.getImageStore();
+			ArrayList<Image> lastImages = store.getLast(numberOfImages);
 			return ImageParser.getJsonFromImage(lastImages);
 		}
 	}

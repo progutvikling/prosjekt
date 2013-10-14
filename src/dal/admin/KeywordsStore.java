@@ -10,11 +10,17 @@ import java.util.ArrayList;
  * Retrieve keywords from database, add keywords and delete keywords.
  * @author Knut Helland <knutoh@gmail.com>
  */
-public class KeywordsStore {
+public class KeywordsStore implements IKeywordsStore {
+	Connection conn;
+
+	public KeywordsStore(Connection conn) {
+		this.conn = conn;
+	}
+
 	public ArrayList<String> getKeywords() {
 		ArrayList<String> keywords = new ArrayList<String>();
 
-		try (Connection conn = Database.getConnection()) {
+		try {
 			PreparedStatement statement = conn.prepareStatement("SELECT keyword FROM keywords");
 			ResultSet r = statement.executeQuery();
 			while (r.next()) {
@@ -28,7 +34,7 @@ public class KeywordsStore {
 	}
 
 	public boolean addKeyword(String keyword) {
-		try  (Connection conn = Database.getConnection()) {
+		try {
 			PreparedStatement statement = conn.prepareStatement("INSERT INTO keywords (keyword) VALUES (?)");
 			statement.setString(1, keyword);
 			statement.executeUpdate();
@@ -39,7 +45,7 @@ public class KeywordsStore {
 	}
 
 	public boolean deleteKeyword(String keyword) {
-		try (Connection conn = Database.getConnection()) {
+		try {
 			PreparedStatement statement = conn.prepareStatement("DELETE FROM keywords WHERE keyword = ?");
 			statement.setString(1, keyword);
 			return statement.executeUpdate() > 0 ? true : false;
