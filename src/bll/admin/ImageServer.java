@@ -12,6 +12,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import dal.admin.IConfigsStore;
 import dal.admin.IImageStore;
 import dal.admin.Image;
 import dal.admin.StoreFactory;
@@ -60,16 +61,13 @@ public class ImageServer {
 		server.stop(seconds);
 	}
 
-	static class ImagesHandler implements HttpHandler {
+	private class ImagesHandler implements HttpHandler {
 		public void handle(HttpExchange exchange) throws IOException {
 			String response = getJsonRepresentationOfLastImages(NUMBER_OF_IMAGES_TO_SERVE);
-			exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
-			OutputStream os = exchange.getResponseBody();
-			os.write(response.getBytes());
-			os.close();
+			ImageServer.respondToClient(exchange, response);
 		}
 
-		public String getJsonRepresentationOfLastImages(int numberOfImages) {
+		private String getJsonRepresentationOfLastImages(int numberOfImages) {
 			IImageStore store = StoreFactory.getImageStore();
 			ArrayList<Image> lastImages = store.getLast(numberOfImages);
 			return ImageParser.getJsonFromImage(lastImages);
@@ -78,11 +76,22 @@ public class ImageServer {
 
 	static class ConfigHandler implements HttpHandler {
 		public void handle(HttpExchange exchange) throws IOException {
-			String response = "config";
-			exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
-			OutputStream os = exchange.getResponseBody();
-			os.write(response.getBytes());
-			os.close();
+			String response = getJsonRepresentationOfConfig("slideshow_delay");
+			ImageServer.respondToClient(exchange, response);
 		}
+		
+		private String getJsonRepresentationOfConfig(String name) {
+			IConfigsStore store = StoreFactory.getConfigsStore();
+			String value = store.getConfig(name);
+			String json = "{ \"slideshow_delay:\" " + value + " }";
+			return json;
+		}
+	}
+	
+	public static void respondToClient(HttpExchange exchange, String json) throws IOException {
+		exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, json.length());
+		OutputStream os = exchange.getResponseBody();
+		os.write(json.getBytes());
+		os.close();
 	}
 }
