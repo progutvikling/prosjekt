@@ -20,7 +20,7 @@ public class SlideshowPanel extends JPanel {
 
 	public void setImage(BufferedImage bi) {
 		this.bi = bi;
-		this.calculateMargins();
+		this.setMargins();
 		this.revalidate();
 		this.repaint();
 	}
@@ -33,7 +33,7 @@ public class SlideshowPanel extends JPanel {
 	
 	//This method will make sure that the image is drawn on the center
 	//of the panel
-	private void calculateMargins() {
+	private void setMargins() {
 		setMarginX();
 		setMarginY();
 	}
