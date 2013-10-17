@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import bll.admin.ImageServer;
+import static org.hamcrest.CoreMatchers.*;
 
 /**
  * 
@@ -46,7 +47,7 @@ public class ImageServerTest {
 		URLConnection conn = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String response = in.readLine();
-		assertNotEquals("Response should not be empty", "", response);
+		assertThat(response, not(equalTo("")));
 	}
 	
 	@Test
@@ -55,6 +56,6 @@ public class ImageServerTest {
 		URLConnection conn = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String response = in.readLine();
-		assertNotEquals("Response shoul not be empty", response);
+		assertThat(response, not(equalTo("")));
 	}
 }
