@@ -46,14 +46,15 @@ public class ImageServerTest {
 		URLConnection conn = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String response = in.readLine();
-		assertNotEquals("", response);
+		assertNotEquals("Response should not be empty", "", response);
 	}
 	
 	@Test
-	public void connectToServerAndFetchConfigTest() throws IOException {
+	public void connectToServerFetchConfigsAndCheckThatResponseIsNotEmptyTest() throws IOException {
 		URL url = new URL("http://localhost:8000/config");
 		URLConnection conn = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		assertEquals("config", in.readLine());
+		String response = in.readLine();
+		assertNotEquals("Response shoul not be empty", response);
 	}
 }

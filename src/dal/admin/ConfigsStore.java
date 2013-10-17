@@ -22,8 +22,11 @@ public class ConfigsStore implements IConfigsStore {
 		try (PreparedStatement statement = conn.prepareStatement("SELECT value from configs WHERE name = ?;")) {
 			statement.setString(1, name);
 			try (ResultSet r = statement.executeQuery()) {
-				r.next();
-				value = r.getString("value");
+				if (r.next()) {
+					value = r.getString("value");
+				}
+				else
+					value = "";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
