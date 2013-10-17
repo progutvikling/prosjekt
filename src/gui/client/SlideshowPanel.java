@@ -5,6 +5,13 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
+/**
+ * Simple panel for viewing images.
+ * The image will be drawn at the center of the panel
+ * 
+ * @author Stian Sandve <stian@sandve.org>
+ */
+
 public class SlideshowPanel extends JPanel {
 
 	private static final long serialVersionUID = -3943809441036747592L;
@@ -18,6 +25,11 @@ public class SlideshowPanel extends JPanel {
 		this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
 	}
 
+	/**
+	 * Draws the specified image on the center of the panel
+	 * @param bi the specified image to be drawn. 
+	 * This method does nothing if bi is null.
+	 */
 	public void setImage(BufferedImage bi) {
 		this.bi = bi;
 		this.setMargins();
@@ -50,5 +62,3 @@ public class SlideshowPanel extends JPanel {
 		return marginY;
 	}
 }
-
-
