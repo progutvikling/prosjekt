@@ -1,5 +1,7 @@
 package dal.admin;
 
+import java.util.Map;
+
 public interface IConfigsStore {
 
 	/**
@@ -25,4 +27,6 @@ public interface IConfigsStore {
 	 * @return	true if the operation succeeded
 	 */
 	public boolean deleteConfig(String name);
+
+	public Map<String, String> getConfigs();
 }

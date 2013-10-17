@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  * Retrieve, add/update and delete configurations in the database
@@ -56,5 +58,22 @@ public class ConfigsStore implements IConfigsStore {
 		} catch (SQLException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public HashMap<String, String> getConfigs() {
+		
+		HashMap<String, String> configs = new HashMap<String, String>();
+		
+		try {
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery("SELECT * FROM configs");
+			while (result.next()) {
+				configs.put(result.getString("name"), result.getString("value"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return configs;
 	}	
 }

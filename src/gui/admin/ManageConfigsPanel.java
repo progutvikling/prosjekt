@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 public class ManageConfigsPanel extends JPanel {
 	private static final long serialVersionUID = -6769963790859811312L;
 
-	public ManageConfigsPanel() {
+	public ManageConfigsPanel(ManageConfigsPanelHandler handler) {
 		this.setName("Instillinger");
 	}
 }

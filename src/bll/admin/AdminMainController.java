@@ -1,7 +1,6 @@
 package bll.admin;
 
 import gui.admin.MainWindow;
-import gui.admin.ManageConfigsPanel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -12,10 +11,11 @@ import javax.swing.JPanel;
 public class AdminMainController {
 	public static void main(String[] args) {
 		ManageKeywordsController manageKeywords = new ManageKeywordsController();
+		ManageConfigsController manageConfigs = new ManageConfigsController();
 		
 		ArrayList<JPanel> panels = new ArrayList<JPanel>();
 		panels.add(manageKeywords.getView());
-		panels.add(new ManageConfigsPanel());
+		panels.add(manageConfigs.getView());
 		
 		MainWindow wnd = new MainWindow(panels);
 		wnd.setVisible(true);
