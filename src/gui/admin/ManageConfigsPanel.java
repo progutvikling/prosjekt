@@ -64,7 +64,7 @@ public class ManageConfigsPanel extends JPanel {
 	}
 
 	/**
-	 * Changelistener for the "Slideshow delay" slider
+	 * ActionListener for the "Save" button
 	 */
 	private class SaveListener implements ActionListener {
 		private ManageConfigsPanel view;
