@@ -28,7 +28,7 @@ public class ConfigsStore implements IConfigsStore {
 					value = r.getString("value");
 				}
 				else
-					value = "";
+					value = "5";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
