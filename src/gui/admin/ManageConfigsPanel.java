@@ -4,10 +4,14 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -18,21 +22,25 @@ public class ManageConfigsPanel extends JPanel {
 	private static final int DELAY_MAX = 10;
 
 	private JSlider slideshowDelay;
+    private ResourceBundle rb;
 
 	ManageConfigsPanelHandler handler;
 
 	public ManageConfigsPanel(ManageConfigsPanelHandler handler) {
 		this.handler = handler;
+		
+		Locale norwegian = new Locale("no_NO");
+		this.rb = ResourceBundle.getBundle("Strings", norwegian);
 
-		this.setName("Instillinger");
+		this.setName(rb.getString("settings"));
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		//Create the label.
-		JLabel sliderLabel = new JLabel("Slideshow delay", JLabel.CENTER);
+		JLabel sliderLabel = new JLabel(rb.getString("slideshow_delay"), JLabel.CENTER);
 		sliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		JButton saveButton = new JButton("Save");
+		JButton saveButton = new JButton(rb.getString("save"));
 		saveButton.addActionListener(new SaveListener(this));
 
 		String delayInit = handler.getConfig("slideshow_delay");
@@ -76,7 +84,15 @@ public class ManageConfigsPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String delay = Integer.toString(view.slideshowDelay.getValue());
-			view.handler.addConfig("slideshow_delay", delay);
+			
+			if (view.handler.addConfig("slideshow_delay", delay)) {
+				JOptionPane.showMessageDialog(view, rb.getString("save_success"), 
+						rb.getString("info"), JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(view, rb.getString("save_failed"), 
+						rb.getString("error"), JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }
