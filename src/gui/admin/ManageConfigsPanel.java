@@ -44,6 +44,9 @@ public class ManageConfigsPanel extends JPanel {
 		saveButton.addActionListener(new SaveListener(this));
 
 		String delayInit = handler.getConfig("slideshow_delay");
+		if (delayInit == null) {
+		    delayInit = "1";
+		}
 
 		//Create the slider.
 		slideshowDelay = new JSlider(
