@@ -29,4 +29,5 @@ Komme i gang
 ### For å kjøre forskjellige deler av programmet:   
    
 * Start Admin-panelet med å kjøre `bll.admin.AdminMainController` i Eclipse.
+* Start fetcheren med å kjøre `bll.admin.ImageFetcher` i Eclipse.
 * Alle tester i pakken `test` kan kjøres av JUnit.
