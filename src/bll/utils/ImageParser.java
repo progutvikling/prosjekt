@@ -37,7 +37,6 @@ public class ImageParser {
 		
 		Gson gson = new GsonBuilder()
 		   .setDateFormat(DATE_FORMAT).create();
-		
 		Image[] img = gson.fromJson(json, Image[].class);
 		return new ArrayList<Image>(Arrays.asList(img));
 		
